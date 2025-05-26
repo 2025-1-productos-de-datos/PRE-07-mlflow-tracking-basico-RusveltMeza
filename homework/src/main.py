@@ -1,6 +1,8 @@
 ## Se importa MLflow y uuid
 import uuid
+
 import mlflow
+
 from ._internals.calculate_metrics import calculate_metrics
 from ._internals.parse_argument import parse_argument
 from ._internals.prepare_data import prepare_data
@@ -63,15 +65,12 @@ def main():
         ## Ya no se requiere la funcion save_model_if_better,
         ## ya que el modelo se guarda en el experimento de MLflow
         # save_model_if_better(model, x_test, y_test)
-        #  porque el modelo se guarda cada corrida
         mlflow.sklearn.log_model(
             sk_model=model,
             artifact_path="model",
             input_example=x_train[:1],
         )
 
-
-# lo llama con  mlflow ui
 
 if __name__ == "__main__":
     main()
